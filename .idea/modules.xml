@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/incode-tiny-server.iml" filepath="$PROJECT_DIR$/incode-tiny-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/incode-tiny-server.iml" filepath="$PROJECT_DIR$/.idea/incode-tiny-server.iml" />
     </modules>
   </component>
 </project>
