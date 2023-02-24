@@ -1,18 +1,19 @@
 require('dotenv').config();
-const {config} = require('./configs');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const {config} = require("./configs");
+const {userRouter} = require("./routes");
+
 mongoose.connect(config.MONGO_URL);
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
 app.options('*', cors());
 
-
+app.use('/users', userRouter);
 
 
 

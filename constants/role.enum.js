@@ -1,6 +1,6 @@
 module.exports = {
-    USER: 'user',
-    BOSS: 'boss',
     ADMINISTRATOR: 'administrator',
+    USER: 'user',
+    // BOSS: 'boss',
 };
 

@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     role: {
         type: String,
         required: true,
-        default: roleEnum.USER
+        default: roleEnum.USER,
     },
     idBoss: {
         type: Schema.Types.ObjectId, ref: 'user'
