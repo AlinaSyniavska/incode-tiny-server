@@ -7,7 +7,7 @@ module.exports = {
   newUserValidator: Joi.object({
     email: emailValidator.required(),
     password: passwordValidator.required(),
-    role: Joi.string().valid(...Object.values(roleEnum)).trim().required(),
+    role: Joi.string().valid(...Object.values(roleEnum)).trim(),
     idBoss: Joi.string(),
   }),
 

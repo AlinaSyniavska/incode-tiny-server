@@ -1,6 +1,6 @@
 const {userService} = require("../../services");
 const {CustomError} = require("../../errors");
-const {roleEnum} = require("../../constants");
+const {roleEnum, roleDBEnum} = require("../../constants");
 
 module.exports = {
     isUserPresent: async (req, res, next) => {
@@ -24,11 +24,12 @@ module.exports = {
         try {
             const {idBoss, role} = req.body;
 
-            if(role === roleEnum.ADMINISTRATOR) {
+            if(role === roleEnum.ADMINISTRATOR) {   // Administrator must not have a boss
                 return next();
             }
 
             if(!idBoss) {
+                // if user don't have boss (idBoss), his boss will be Admin - Each user must have a boss (strictly one)
                 const bossAdmin = await userService.findOne({role: roleEnum.ADMINISTRATOR}).exec();
 
                 if (!bossAdmin) {
@@ -45,7 +46,8 @@ module.exports = {
                 return next(new CustomError(`Boss with id ${idBoss} not found`, 404));
             }
 
-            await userService.updateOne({_id: idBoss}, {role: roleEnum.BOSS});
+            // if user has boss (idBoss), then user with idBoss will become boss (role = boss)
+            await userService.updateOne({_id: idBoss}, {role: roleDBEnum.BOSS});
 
             next();
         } catch (e) {
