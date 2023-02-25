@@ -15,22 +15,14 @@ module.exports = {
         }
     },
 
-    checkToken: (req, token = '', tokenType = tokenTypeEnum.ACCESS) => {
+    checkToken: (token = '', tokenType = tokenTypeEnum.ACCESS) => {
         try {
             let secret;
 
             if (tokenType === tokenTypeEnum.ACCESS) secret = config.ACCESS_TOKEN;
             if (tokenType === tokenTypeEnum.REFRESH) secret = config.REFRESH_TOKEN;
 
-            return jwt.verify(
-                token,
-                secret,
-                (err, decoded) => {
-                    if (err) throw new CustomError('Token not valid', 401);
-
-                    req.role = decoded.UserInfo.role;
-                }
-            );
+            return jwt.verify(token, secret);
         } catch (e) {
             throw new CustomError('Token not valid', 401);
         }

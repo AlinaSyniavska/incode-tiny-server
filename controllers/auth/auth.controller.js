@@ -33,13 +33,12 @@ module.exports = {
     refreshToken: async (req, res, next) => {
         try {
             const {userId, refresh_token} = req.tokenInfo;
-            const role = req.role;
 
             await OAuth.deleteOne({refresh_token});
 
             const tokens = tokenService.generateAuthTokens({
                 "UserInfo": {
-                    "role": role
+                    "role": userId.role
                 }
             });
 

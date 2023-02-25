@@ -46,7 +46,7 @@ module.exports = {
                 return next(new CustomError('No token', 401));
             }
 
-            tokenService.checkToken(req, accessToken);
+            tokenService.checkToken(accessToken);
 
             const tokenInfo = await OAuth.findOne({access_token: accessToken}).populate('userId');
 
@@ -71,9 +71,9 @@ module.exports = {
                 return next(new CustomError('No token', 401));
             }
 
-            tokenService.checkToken(req, refreshToken, tokenTypeEnum.REFRESH);
+            tokenService.checkToken(refreshToken, tokenTypeEnum.REFRESH);
 
-            const tokenInfo = await OAuth.findOne({refresh_token: refreshToken});
+            const tokenInfo = await OAuth.findOne({refresh_token: refreshToken}).populate('userId');
 
             if (!tokenInfo) {
                 return next(new CustomError('Token not valid', 401));
