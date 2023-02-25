@@ -1,10 +1,11 @@
 const userRouter = require('express').Router();
 
-const {commonMiddleware, userMiddleware} = require("../../middlewares");
+const {commonMiddleware, userMiddleware, authMiddleware} = require("../../middlewares");
 const {userValidator} = require("../../validators");
 const {userController} = require("../../controllers");
 
 userRouter.get('/',
+    authMiddleware.checkAccessToken,
     userController.getAll);
 
 userRouter.post('/',
