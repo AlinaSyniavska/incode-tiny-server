@@ -6,8 +6,7 @@ const {tokenTypeEnum} = require("../../constants");
 
 module.exports = {
     generateAuthTokens: (payload = {}) => {
-        // const access_token = jwt.sign(payload, config.ACCESS_TOKEN, {expiresIn: '24h'});
-        const access_token = jwt.sign(payload, config.ACCESS_TOKEN, {expiresIn: '30s'});
+        const access_token = jwt.sign(payload, config.ACCESS_TOKEN, {expiresIn: '24h'});
         const refresh_token = jwt.sign(payload, config.REFRESH_TOKEN, {expiresIn: '30d'});
 
         return {
@@ -29,7 +28,6 @@ module.exports = {
                 (err, decoded) => {
                     if (err) throw new CustomError('Token not valid', 401);
 
-                    req.userId = decoded.UserInfo.userId;
                     req.role = decoded.UserInfo.role;
                 }
             );

@@ -40,7 +40,6 @@ module.exports = {
 
     checkAccessToken: async (req, res, next) => {
         try {
-            // const accessToken = req.get('Authorization');
             const accessToken = req.headers.authorization || req.headers.Authorization;
 
             if (!accessToken) {
@@ -66,7 +65,6 @@ module.exports = {
 
     checkRefreshToken: async (req, res, next) => {
         try {
-            // const refreshToken = req.get('Authorization');
             const refreshToken = req.headers.authorization || req.headers.Authorization;
 
             if (!refreshToken) {

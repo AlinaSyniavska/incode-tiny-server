@@ -10,11 +10,9 @@ module.exports = {
 
             await passwordService.comparePassword(hashPassword, password);
 
-            const userRole = Object.values(role);
             const tokens = tokenService.generateAuthTokens({
                 "UserInfo": {
-                    "userId": _id,
-                    "role": userRole
+                    "role": role
                 }
             });
 
@@ -35,17 +33,15 @@ module.exports = {
     refreshToken: async (req, res, next) => {
         try {
             const {userId, refresh_token} = req.tokenInfo;
-            const {userId: userIdPayload} = req.userId;
-            const {role} = req.role;
+            const role = req.role;
 
             await OAuth.deleteOne({refresh_token});
 
-            const tokens = tokenService.generateAuthTokens(({
+            const tokens = tokenService.generateAuthTokens({
                 "UserInfo": {
-                    "userId": userIdPayload,
                     "role": role
                 }
-            }));
+            });
 
             await OAuth.create({
                 userId,
