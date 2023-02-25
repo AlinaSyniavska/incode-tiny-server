@@ -12,12 +12,12 @@ authRouter.post('/refreshToken',
     authMiddleware.checkRefreshToken,
     authController.refreshToken);
 
-/*authRouter.post('/logout',
+authRouter.post('/logout',
     authMiddleware.checkAccessToken,
     authController.logout);
 
 authRouter.post('/logoutAllDevices',
     authMiddleware.checkAccessToken,
-    authController.logoutAllDevices);*/
+    authController.logoutAllDevices);
 
 module.exports = authRouter;

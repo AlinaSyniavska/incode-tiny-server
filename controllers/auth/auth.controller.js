@@ -56,8 +56,6 @@ module.exports = {
 
     logout: async (req, res, next) => {
         try {
-            // const { access_token } = req;
-            // const { email, name } = user;
             const {access_token} = req;
 
             await OAuth.deleteOne({access_token});
@@ -70,7 +68,6 @@ module.exports = {
 
     logoutAllDevices: async (req, res, next) => {
         try {
-            // const { _id, email, name } = req.user;
             const {_id} = req.user;
 
             const {deletedCount} = await OAuth.deleteMany({userId: _id});
