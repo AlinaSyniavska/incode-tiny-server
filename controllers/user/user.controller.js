@@ -19,6 +19,7 @@ module.exports = {
                     users.push(user);
                     break;
                 case roleDBEnum.BOSS:
+                    users = await userService.findAll({idBoss: _id}).exec();
                     break;
                 default:
                     user = await userService.findOne({_id: _id}).exec();
@@ -28,7 +29,7 @@ module.exports = {
             const usersForResponse = users.map(user => userPresenter.userResponse(user));
 
             res.json({
-                data: usersForResponse,
+                subordinates : usersForResponse,
             });
         } catch (e) {
             next(e);
