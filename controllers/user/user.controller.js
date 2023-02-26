@@ -19,7 +19,7 @@ module.exports = {
                     users.push(user);
                     break;
                 case roleDBEnum.BOSS:
-                    users = await userService.findAll({idBoss: _id}).exec();
+                    await findAllSubordinates(_id, users);
                     break;
                 default:
                     user = await userService.findOne({_id: _id}).exec();
@@ -29,7 +29,7 @@ module.exports = {
             const usersForResponse = users.map(user => userPresenter.userResponse(user));
 
             res.json({
-                subordinates : usersForResponse,
+                subordinates: usersForResponse,
             });
         } catch (e) {
             next(e);
@@ -63,3 +63,16 @@ module.exports = {
         }
     },
 };
+
+async function findAllSubordinates(id, arr) {
+    const subordinates = await userService.findAll({idBoss: id}).exec();
+
+    if (subordinates.length) {
+        arr.push(...subordinates);
+
+        for (const user of subordinates) {
+            await findAllSubordinates(user._id, arr);
+        }
+    }
+}
+
