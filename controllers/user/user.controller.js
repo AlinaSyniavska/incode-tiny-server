@@ -51,13 +51,14 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const {id} = req.params;
+/*            const {id} = req.params;
             let updatedUser;
 
             updatedUser = await userService.updateOne({_id: id}, req.body);
 
 
-            res.status(201).json(updatedUser);
+            res.status(201).json(updatedUser);*/
+            res.status(201).json('UPDATE');
         } catch (e) {
             next(e);
         }

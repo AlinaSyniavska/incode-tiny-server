@@ -12,6 +12,7 @@ module.exports = {
   }),
 
   updateUserValidator: Joi.object({
+    idUser: Joi.string(),
     idBoss: Joi.string(),
   }),
 };

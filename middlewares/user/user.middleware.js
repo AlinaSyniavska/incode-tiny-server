@@ -5,6 +5,7 @@ const {roleEnum, roleDBEnum} = require("../../constants");
 module.exports = {
     isUserPresent: async (req, res, next) => {
         try {
+            console.log('************')
             const {id} = req.params;
 
             const user = await userService.findOne({_id: id});
