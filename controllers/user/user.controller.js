@@ -59,8 +59,7 @@ module.exports = {
             const {_id: idNewBoss} = req.newBoss;
 
             let updatedUser = await userService.updateOne({_id: idUser}, {idBoss: idNewBoss});
-
-            let updatedBoss = await userService.updateOne({_id: idNewBoss}, {role: roleDBEnum.BOSS});
+            let updatedNewBoss = await userService.updateOne({_id: idNewBoss}, {role: roleDBEnum.BOSS});
             let subordinates = await userService.findAll({idBoss: id}).exec();
 
             if(!subordinates.length) {
