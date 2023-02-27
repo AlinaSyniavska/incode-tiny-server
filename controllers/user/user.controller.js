@@ -58,15 +58,9 @@ module.exports = {
             const {_id: idUser} = req.subordinate;
             const {_id: idNewBoss} = req.newBoss;
 
-            // console.log(id)
-            // console.log(idUser)
-            // console.log(idNewBoss)
+            let updatedUser = await userService.updateOne({_id: idUser}, {idBoss: idNewBoss});
 
-            let updatedUser = await userService.updateOne({_id: idUser.toString()}, {newF: 1});
-
-            console.log(updatedUser);
-
-            let updatedBoss = await userService.updateOne({_id: idNewBoss.toString()}, {role: roleDBEnum.BOSS});
+            let updatedBoss = await userService.updateOne({_id: idNewBoss}, {role: roleDBEnum.BOSS});
             let subordinates = await userService.findAll({idBoss: id}).exec();
 
             if(!subordinates.length) {
