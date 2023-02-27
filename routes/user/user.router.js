@@ -16,13 +16,14 @@ userRouter.post('/',
     userMiddleware.isBossPresent,
     userController.create);
 
-
 userRouter.patch('/:id',
     commonMiddleware.isIdValid,
-    authMiddleware.checkAccessToken,
-    commonMiddleware.verifyRoles(roleDBEnum.BOSS),
     commonMiddleware.isDataValid(userValidator.updateUserValidator),
     userMiddleware.isUserPresent,
+    authMiddleware.checkAccessToken,
+    commonMiddleware.verifyRoles(roleDBEnum.BOSS),
+    userMiddleware.isHisSubordinate,
+    userMiddleware.isUsersForUpdatePresent,
     userController.update);
 
 

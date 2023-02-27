@@ -24,11 +24,11 @@ module.exports = {
         try {
             const {idBoss, role} = req.body;
 
-            if(role === roleEnum.ADMINISTRATOR) {   // Administrator must not have a boss
+            if (role === roleEnum.ADMINISTRATOR) {   // Administrator must not have a boss
                 return next();
             }
 
-            if(!idBoss) {
+            if (!idBoss) {
                 // if user don't have boss (idBoss), his boss will be Admin - Each user must have a boss (strictly one)
                 const bossAdmin = await userService.findOne({role: roleEnum.ADMINISTRATOR}).exec();
 
@@ -59,7 +59,7 @@ module.exports = {
         try {
             const {role} = req.body;
 
-            if(role !== roleEnum.ADMINISTRATOR) {
+            if (role !== roleEnum.ADMINISTRATOR) {
                 return next();
             }
 
@@ -91,4 +91,39 @@ module.exports = {
         }
     },
 
+    isUsersForUpdatePresent: async (req, res, next) => {
+        try {
+            const {idBoss} = req.body;
+
+            const boss = await userService.findOne({_id: idBoss});
+
+            if (!boss) {
+                return next(new CustomError(`New Boss with id ${idBoss} not found`, 404));
+            }
+
+            req.newBoss = boss;
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    isHisSubordinate: async (req, res, next) => {
+        try {
+            const {id} = req.params;
+            const {idUser} = req.body;
+
+            const user = await userService.findOne({_id: idUser});
+
+            if (user?.idBoss.toString() !== id) {
+                return next(new CustomError(`Boss with id ${id} does not have User with id ${idUser}`));
+            }
+
+            req.subordinate = user;
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
 };

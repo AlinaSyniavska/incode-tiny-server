@@ -19,6 +19,9 @@ module.exports = {
                     users.push(user);
                     break;
                 case roleDBEnum.BOSS:
+                    user = await userService.findOne({_id: _id}).exec();
+                    users.push(user);
+
                     await findAllSubordinates(_id, users);
                     break;
                 default:
@@ -51,14 +54,26 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-/*            const {id} = req.params;
-            let updatedUser;
+            const {id} = req.params;
+            const {_id: idUser} = req.subordinate;
+            const {_id: idNewBoss} = req.newBoss;
 
-            updatedUser = await userService.updateOne({_id: id}, req.body);
+            // console.log(id)
+            // console.log(idUser)
+            // console.log(idNewBoss)
 
+            let updatedUser = await userService.updateOne({_id: idUser.toString()}, {newF: 1});
 
-            res.status(201).json(updatedUser);*/
-            res.status(201).json('UPDATE');
+            console.log(updatedUser);
+
+            let updatedBoss = await userService.updateOne({_id: idNewBoss.toString()}, {role: roleDBEnum.BOSS});
+            let subordinates = await userService.findAll({idBoss: id}).exec();
+
+            if(!subordinates.length) {
+                const updatedOldBoss = await userService.updateOne({_id: id}, {role: roleEnum.USER});
+            }
+
+            res.status(201).json(updatedUser);
         } catch (e) {
             next(e);
         }
