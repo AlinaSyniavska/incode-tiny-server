@@ -1,4 +1,5 @@
 const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 
 const {roleEnum} = require("../../constants");
 const {emailValidator, passwordValidator} = require("../common/common.validator");
@@ -12,7 +13,8 @@ module.exports = {
   }),
 
   updateUserValidator: Joi.object({
-    idBoss: Joi.string(),
+    idUser: Joi.objectId(),
+    idBoss: Joi.objectId(),
   }),
 };
 

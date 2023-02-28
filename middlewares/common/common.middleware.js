@@ -29,4 +29,20 @@ module.exports = {
             next(e);
         }
     },
+
+    verifyRoles: (userRole) => async (req, res, next) => {
+        try {
+            const {role} = req.user;
+
+            if(role !== userRole) {
+                return next(new CustomError(`You are not authorized as ${userRole}`, 401));
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+
 }
