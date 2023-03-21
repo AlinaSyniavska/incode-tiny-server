@@ -1,9 +1,9 @@
 const userRouter = require('express').Router();
 
-const {commonMiddleware, userMiddleware, authMiddleware} = require("../../middlewares");
-const {userValidator} = require("../../validators");
-const {userController} = require("../../controllers");
-const {roleDBEnum} = require("../../constants");
+const { commonMiddleware, userMiddleware, authMiddleware } = require("../../middlewares");
+const { userValidator } = require("../../validators");
+const { userController } = require("../../controllers");
+const { roleDBEnum } = require("../../constants");
 
 userRouter.get('/',
     authMiddleware.checkAccessToken,
@@ -23,7 +23,7 @@ userRouter.patch('/:id',
     authMiddleware.checkAccessToken,
     commonMiddleware.verifyRoles(roleDBEnum.BOSS),
     userMiddleware.isHisSubordinate,
-    userMiddleware.isUsersForUpdatePresent,
+    userMiddleware.isBossForUpdatePresent,
     userController.update);
 
 

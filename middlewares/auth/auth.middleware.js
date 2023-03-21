@@ -1,8 +1,8 @@
-const {authValidator} = require("../../validators");
-const {CustomError} = require("../../errors");
-const {userService, tokenService} = require("../../services");
-const {OAuth} = require("../../dataBase");
-const {tokenTypeEnum} = require("../../constants");
+const { authValidator } = require("../../validators");
+const { CustomError } = require("../../errors");
+const { userService, tokenService } = require("../../services");
+const { OAuth } = require("../../dataBase");
+const { tokenTypeEnum } = require("../../constants");
 
 module.exports = {
     isLoginBodyValid: (req, res, next) => {

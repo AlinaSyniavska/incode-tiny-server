@@ -29,7 +29,7 @@ module.exports = {
             }
 
             if (!idBoss) {
-                // if user don't have boss (idBoss), his boss will be Admin - Each user must have a boss (strictly one)
+                // if user doesn't have a boss (idBoss), his boss will be Admin - Each user must have a boss (strictly one)
                 const bossAdmin = await userService.findOne({role: roleEnum.ADMINISTRATOR}).exec();
 
                 if (!bossAdmin) {
@@ -46,7 +46,7 @@ module.exports = {
                 return next(new CustomError(`Boss with id ${idBoss} not found`, 404));
             }
 
-            // if user has boss (idBoss), then user with idBoss will become boss (role = boss)
+            // if user has a boss (idBoss), then user with idBoss will become a boss (role = boss)
             await userService.updateOne({_id: idBoss}, {role: roleDBEnum.BOSS});
 
             next();
@@ -91,7 +91,7 @@ module.exports = {
         }
     },
 
-    isUsersForUpdatePresent: async (req, res, next) => {
+    isBossForUpdatePresent: async (req, res, next) => {
         try {
             const {idBoss} = req.body;
 

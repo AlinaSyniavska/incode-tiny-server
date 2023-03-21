@@ -1,6 +1,6 @@
-const {Types} = require("mongoose");
+const { Types } = require("mongoose");
 
-const {CustomError} = require("../../errors");
+const { CustomError } = require("../../errors");
 
 module.exports = {
     isIdValid: (req, res, next) => {
@@ -43,6 +43,5 @@ module.exports = {
             next(e);
         }
     },
-
 
 }
