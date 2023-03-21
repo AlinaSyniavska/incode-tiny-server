@@ -1,6 +1,5 @@
-const {passwordService, tokenService} = require("../../services");
-const {OAuth} = require("../../dataBase");
-
+const { passwordService, tokenService } = require("../../services");
+const { OAuth } = require("../../dataBase");
 
 module.exports = {
     login: async (req, res, next) => {

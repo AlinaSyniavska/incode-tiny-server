@@ -1,6 +1,6 @@
-const {userService, passwordService} = require("../../services");
-const {userPresenter} = require("../../presenters");
-const {roleEnum, roleDBEnum} = require("../../constants");
+const { userService, passwordService } = require("../../services");
+const { userPresenter } = require("../../presenters");
+const { roleEnum, roleDBEnum } = require("../../constants");
 
 module.exports = {
     getAll: async (req, res, next) => {
