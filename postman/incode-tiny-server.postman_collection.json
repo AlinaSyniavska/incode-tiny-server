@@ -95,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user10@gmail.com\",\r\n    \"password\": \"pa$$w0rD\",\r\n    \"idBoss\": \"63f8e582ac3ef5c58cd9b088\"\r\n}\r\n\r\n",
+							"raw": "{\r\n    \"email\": \"user11@gmail.com\",\r\n    \"password\": \"pa$$w0rD\",\r\n    \"idBoss\": \"63f8e582ac3ef5c58cd9b088\"\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,7 +135,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idUser\": \"63fbb68912d2252137cdc4e9\",\r\n    \"idBoss\": \"63f8e5aeac3ef5c58cd9b08f\"\r\n}\r\n\r\n",
+							"raw": "{\r\n    \"idUser\": \"63fdf10b978d34d2fe52395e\",\r\n    \"idBoss\": \"63f8e5aeac3ef5c58cd9b08f\"\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,7 +211,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user2@gmail.com\",\r\n    \"password\": \"pa$$w0rD\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user8@gmail.com\",\r\n    \"password\": \"pa$$w0rD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -1,5 +1,6 @@
-const {Schema, model} = require('mongoose');
-const {roleEnum} = require("../constants");
+const { Schema, model } = require('mongoose');
+
+const { roleEnum } = require("../constants");
 
 const UserSchema = new Schema({
     email: {
@@ -18,7 +19,8 @@ const UserSchema = new Schema({
         default: roleEnum.USER,
     },
     idBoss: {
-        type: Schema.Types.ObjectId, ref: 'user'
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     },
 
 }, {timestamps: true});

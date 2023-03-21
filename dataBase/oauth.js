@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const OAuthSchema = new Schema({
     userId: {
@@ -16,7 +16,6 @@ const OAuthSchema = new Schema({
         type: String,
         required: true,
     },
-
 
 }, {timestamps: true});
 
