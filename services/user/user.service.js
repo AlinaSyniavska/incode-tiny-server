@@ -1,4 +1,4 @@
-const {User} = require("../../dataBase");
+const { User } = require("../../dataBase");
 
 module.exports = {
     findAll: (params = {}) => {

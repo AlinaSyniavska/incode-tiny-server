@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-const {config} = require("../../configs");
-const {CustomError} = require("../../errors");
-const {tokenTypeEnum} = require("../../constants");
+const { config } = require("../../configs");
+const { CustomError } = require("../../errors");
+const { tokenTypeEnum } = require("../../constants");
 
 module.exports = {
     generateAuthTokens: (payload = {}) => {
